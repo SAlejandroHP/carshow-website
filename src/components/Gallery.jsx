@@ -8,7 +8,7 @@ export default function Gallery({ onPhotoSelect }) {
     const modules = import.meta.glob('../assets/img-tsuru/*.jpg', { eager: true, query: '?url', import: 'default' });
     const allImages = Object.keys(modules).map((key, index) => {
       const filename = key.substring(key.lastIndexOf('/') + 1);
-      const data = galleryData[filename] || { title: `Archive 0${index + 1}`, description: "Una memoria inmortalizada en el asfalto." };
+      const data = galleryData[filename] || { title: `Archivo 0${index + 1}`, description: "Una memoria inmortalizada en el asfalto." };
       return {
         id: `tsuru-${index}`,
         src: modules[key],
@@ -40,7 +40,10 @@ export default function Gallery({ onPhotoSelect }) {
 
   return (
     <section className="gallery-wrapper">
-      <h2 className="gallery-title">ARCHIVE</h2>
+      <div className="gallery-header">
+        <h2 className="gallery-title">ARCHIVO</h2>
+        <p className="gallery-date">Fecha del Evento Conmemorativo: [Fecha]</p>
+      </div>
       
       <div className="gallery-layout">
         {images.map((photo, index) => {
