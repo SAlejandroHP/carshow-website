@@ -1,0 +1,57 @@
+/* Hide default cursor on body but keep it for inputs so they are usable */
+body {
+  cursor: none;
+}
+
+input, textarea {
+  cursor: text;
+}
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent);
+  /* Follows instantly via inline style */
+}
+
+.custom-cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  /* slight delay to the ring for trailing effect */
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-cursor-ring.hover {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.custom-cursor-dot.hidden,
+.custom-cursor-ring.hidden {
+  opacity: 0;
+}
+
+/* On mobile, completely hide custom cursor and revert to default behavior */
+@media (max-width: 768px), (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none;
+  }
+}

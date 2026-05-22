@@ -1,0 +1,148 @@
+.hero-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: clip; /* Keeps parallax layers contained */
+  view-timeline: --hero-wrapper;
+  display: grid;
+  place-items: center;
+}
+
+.hero-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes parallax-bg {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(30%); /* Moves slower than scroll */
+  }
+}
+
+.hero-background {
+  z-index: -1;
+  /* Make the background slightly taller so we have room to parallax down */
+  height: 130%;
+  top: -15%;
+  animation: parallax-bg linear both;
+  animation-timeline: --hero-wrapper;
+  animation-range: entry 0% exit 100%;
+}
+
+.hero-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Gradient overlay to make text readable and blend into dark theme */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 8, 0.2) 0%,
+    rgba(5, 5, 8, 0.7) 60%,
+    var(--color-bg) 100%
+  );
+}
+
+@keyframes parallax-content {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+.hero-content {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-md); /* Menos padding en móviles */
+  
+  /* The content fades out slightly as you scroll down */
+  animation: parallax-content linear both;
+  animation-timeline: --hero-wrapper;
+  animation-range: entry 100% exit 50%;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 12vw, 6rem);
+  color: #fff;
+  margin-bottom: 0;
+  line-height: 1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-nickname {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.8rem, 8vw, 4rem);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-sm);
+}
+
+/* Bouncing scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-accent) 50%, transparent 50%);
+  background-size: 100% 200%;
+  animation: scroll-bounce 2s infinite ease-in-out;
+}
+
+@keyframes scroll-bounce {
+  0% {
+    background-position: 0 100%;
+  }
+  50% {
+    background-position: 0 0%;
+  }
+  100% {
+    background-position: 0 -100%;
+  }
+}
+
+/* Fallback for browsers without scroll-driven animations */
+@supports not ((animation-timeline: view()) and (animation-range: entry)) {
+  .hero-background, .hero-content {
+    animation: none;
+  }
+}

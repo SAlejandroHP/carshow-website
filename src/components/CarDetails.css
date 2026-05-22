@@ -1,0 +1,104 @@
+.details-container {
+  min-height: 100vh;
+  padding: var(--space-lg) var(--space-sm);
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 20;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-text-secondary);
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+  transition: color 0.3s;
+}
+
+.back-button:hover {
+  color: #fff;
+}
+
+.details-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .details-container {
+    padding: var(--space-xl) var(--space-md);
+  }
+  .back-button {
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+  .details-content {
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+}
+
+.details-image-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.details-hero-image {
+  width: 100%;
+  height: auto;
+  max-height: 40vh;
+  object-fit: cover;
+  /* MANDATORY: The view transition name must match the one dynamically applied to the thumbnail */
+  view-transition-name: selected-car-img;
+}
+
+@media (min-width: 768px) {
+  .details-hero-image {
+    max-height: 70vh;
+  }
+}
+
+/* Fix aspect ratio stretching during transition if needed */
+::view-transition-old(selected-car-img),
+::view-transition-new(selected-car-img) {
+  height: 100%;
+}
+
+.details-info {
+  padding: var(--space-lg);
+}
+
+.details-info h2 {
+  font-family: var(--font-accent);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #fff;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+}
+
+.details-info h2:focus {
+  outline: none; /* Focus managed programmatically */
+}
+
+.details-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.05em;
+}
+
+.details-description {
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.6;
+}
