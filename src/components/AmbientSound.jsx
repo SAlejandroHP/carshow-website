@@ -3,94 +3,84 @@ import './AmbientSound.css';
 
 export default function AmbientSound() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioCtxRef = useRef(null);
-  const oscillatorsRef = useRef([]);
-  const gainNodeRef = useRef(null);
+  const audioRef = useRef(null);
+  const manuallyPausedRef = useRef(false);
 
   useEffect(() => {
+    // Initialize the audio element with our local copyright-free track
+    const audio = new Audio('/ambient.mp3');
+    audio.loop = true;
+    audio.volume = 0.25; // Warm, gentle background volume
+    audioRef.current = audio;
+
+    let hasStarted = false;
+
+    const startAutoplay = async () => {
+      if (manuallyPausedRef.current) return;
+      if (hasStarted) return;
+
+      try {
+        await audio.play();
+        setIsPlaying(true);
+        hasStarted = true;
+      } catch {
+        console.warn('Autoplay blocked. Registering interaction listeners...');
+        registerInteractionListeners();
+      }
+    };
+
+    const handleInteraction = async () => {
+      if (manuallyPausedRef.current) {
+        cleanupListeners();
+        return;
+      }
+
+      try {
+        await audio.play();
+        setIsPlaying(true);
+        hasStarted = true;
+        cleanupListeners();
+      } catch (e) {
+        console.error('Failed to play audio on user gesture:', e);
+      }
+    };
+
+    const registerInteractionListeners = () => {
+      document.addEventListener('click', handleInteraction, { once: true });
+      document.addEventListener('keydown', handleInteraction, { once: true });
+      document.addEventListener('touchstart', handleInteraction, { once: true });
+      document.addEventListener('wheel', handleInteraction, { once: true });
+      document.addEventListener('mousedown', handleInteraction, { once: true });
+    };
+
+    const cleanupListeners = () => {
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('keydown', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('wheel', handleInteraction);
+      document.removeEventListener('mousedown', handleInteraction);
+    };
+
+    startAutoplay();
+
     return () => {
-      stopSound();
+      cleanupListeners();
+      audio.pause();
     };
   }, []);
 
-  const initAudio = () => {
-    if (!audioCtxRef.current) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtxRef.current = new AudioContext();
-    }
-  };
+  const toggleSound = (e) => {
+    e.stopPropagation();
+    if (!audioRef.current) return;
 
-  const playSound = () => {
-    initAudio();
-    if (audioCtxRef.current.state === 'suspended') {
-      audioCtxRef.current.resume();
-    }
-
-    const ctx = audioCtxRef.current;
-    const masterGain = ctx.createGain();
-    masterGain.gain.value = 0.05; // Soft volume
-    masterGain.connect(ctx.destination);
-    gainNodeRef.current = masterGain;
-
-    // Frequencies for a nostalgic, melancholy chord progression (e.g. Cmaj7 -> Amin7)
-    // C4, E4, G4, B4
-    const frequencies = [261.63, 329.63, 392.00, 493.88];
-    
-    frequencies.forEach((freq, idx) => {
-      const osc = ctx.createOscillator();
-      const oscGain = ctx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.value = freq;
-      
-      // Gentle modulation for ambient pad feel
-      const lfo = ctx.createOscillator();
-      lfo.type = 'sine';
-      lfo.frequency.value = 0.1 + (idx * 0.05); // Slow modulation
-      const lfoGain = ctx.createGain();
-      lfoGain.gain.value = 5;
-      lfo.connect(lfoGain);
-      lfoGain.connect(osc.frequency);
-      lfo.start();
-      
-      oscGain.gain.setValueAtTime(0, ctx.currentTime);
-      oscGain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 3); // Slow attack
-      
-      osc.connect(oscGain);
-      oscGain.connect(masterGain);
-      osc.start();
-      
-      oscillatorsRef.current.push({ osc, oscGain, lfo });
-    });
-  };
-
-  const stopSound = () => {
-    if (gainNodeRef.current && audioCtxRef.current) {
-      const ctx = audioCtxRef.current;
-      gainNodeRef.current.gain.linearRampToValueAtTime(0, ctx.currentTime + 2); // Slow release
-      
-      setTimeout(() => {
-        oscillatorsRef.current.forEach(({ osc, oscGain, lfo }) => {
-          try {
-            osc.stop();
-            lfo.stop();
-            osc.disconnect();
-            oscGain.disconnect();
-            lfo.disconnect();
-          } catch (e) {
-            // Ignore if already stopped
-          }
-        });
-        oscillatorsRef.current = [];
-      }, 2000);
-    }
-  };
-
-  const toggleSound = () => {
     if (isPlaying) {
-      stopSound();
+      audioRef.current.pause();
+      manuallyPausedRef.current = true;
     } else {
-      playSound();
+      manuallyPausedRef.current = false;
+      audioRef.current.play().catch(err => {
+        console.error('Failed to play audio on manual toggle:', err);
+      });
     }
     setIsPlaying(!isPlaying);
   };

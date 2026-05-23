@@ -19,14 +19,6 @@
   margin-bottom: var(--space-sm);
 }
 
-.gallery-date {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  opacity: 0.8;
-  letter-spacing: 0.05em;
-  margin-top: 0.5rem;
-}
 
 .gallery-layout {
   display: flex;
@@ -76,11 +68,101 @@
   transform: scale(1.05);
 }
 
+/* Card glassmorphism badge */
+.card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              opacity 0.3s ease;
+  z-index: 2;
+}
+
+.badge-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--color-text-primary);
+  transition: transform 0.3s ease;
+}
+
+/* Hover effects for badge */
+.gallery-item:hover .card-badge {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.gallery-item:hover .badge-icon {
+  transform: scale(1.1);
+}
+
+/* Photo footer layout */
+.photo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-sm);
+  padding-bottom: 4px;
+}
+
 .photo-label {
   font-family: var(--font-accent);
   font-size: 0.8rem;
-  margin-top: var(--space-sm);
   color: var(--color-text-secondary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.photo-action {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.arrow-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effects for text action */
+.gallery-item:hover .photo-label {
+  color: var(--color-text-primary);
+}
+
+.gallery-item:hover .photo-action {
+  opacity: 1;
+  color: var(--color-text-primary);
+}
+
+.gallery-item:hover .arrow-icon {
+  transform: translateX(4px);
 }
 
 /* View timeline animation */

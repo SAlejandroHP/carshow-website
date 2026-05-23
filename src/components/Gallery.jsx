@@ -42,7 +42,6 @@ export default function Gallery({ onPhotoSelect }) {
     <section className="gallery-wrapper">
       <div className="gallery-header">
         <h2 className="gallery-title">ARCHIVO</h2>
-        <p className="gallery-date">Fecha del Evento Conmemorativo: [Fecha]</p>
       </div>
       
       <div className="gallery-layout">
@@ -63,8 +62,24 @@ export default function Gallery({ onPhotoSelect }) {
                   alt={photo.title} 
                   loading="lazy" 
                 />
+                <div className="card-badge">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="badge-icon">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                  <span>Leer Historia</span>
+                </div>
               </div>
-              <p className="photo-label">{photo.title}</p>
+              <div className="photo-footer">
+                <p className="photo-label">{photo.title}</p>
+                <span className="photo-action">
+                  Ver más
+                  <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </span>
+              </div>
             </article>
           );
         })}

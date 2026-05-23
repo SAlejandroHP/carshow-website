@@ -10,7 +10,7 @@ export default function Hero() {
       </div>
       
       <div className="hero-text-container">
-        <h2 className="hero-pretitle">EN MEMORIA DE JOSÉ PADRÓN "RULAS" (199X — 2026)</h2>
+        <h2 className="hero-pretitle">EN MEMORIA DE JOSÉ PADRÓN GARCÍA "RULAS" <br /> <span style={{ whiteSpace: 'nowrap' }}>(1980 — 2016)</span></h2>
         <h1 className="hero-title">Rulas</h1>
         <p className="hero-subtitle">"El camino fue más bello porque lo recorrimos contigo. Tu motor sigue rugiendo en el viento."</p>
       </div>

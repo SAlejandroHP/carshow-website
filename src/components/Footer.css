@@ -1,0 +1,51 @@
+.saak-footer {
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+}
+
+.saak-footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.saak-footer-content p {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.saak-powered {
+  font-size: 0.75rem !important;
+  opacity: 0.4 !important;
+}
+
+.saak-footer-content:hover p {
+  opacity: 0.8;
+}
+
+.saak-footer-content:hover .saak-powered {
+  opacity: 0.6 !important;
+}
+
+.saak-link {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 0.25rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.saak-link:hover {
+  color: var(--color-accent);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}

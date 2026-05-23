@@ -65,31 +65,31 @@ export default function DedicationForm({ onDedicationAdded }) {
         <h3>DEJA TU MEMORIA</h3>
       </div>
       <form onSubmit={handleSubmit} className="dedication-form">
-        <div className="form-group">
-          <label htmlFor="author">TU NOMBRE</label>
+        <div className="form-group material-group">
           <input
             type="text"
             id="author"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            placeholder="Escribe tu nombre..."
+            placeholder=" "
             maxLength={50}
             required
             disabled={isSubmitting}
           />
+          <label htmlFor="author">TU NOMBRE</label>
         </div>
-        <div className="form-group">
-          <label htmlFor="text">TU MENSAJE</label>
+        <div className="form-group material-group">
           <textarea
             id="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Comparte tu memoria o dedicatoria..."
+            placeholder=" "
             rows={4}
             maxLength={300}
             required
             disabled={isSubmitting}
           />
+          <label htmlFor="text">TU MENSAJE</label>
           <div className="char-count">
             {text.length}/300
           </div>

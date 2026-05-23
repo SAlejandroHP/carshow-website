@@ -1,21 +1,23 @@
 .dedication-form-wrapper {
   margin: var(--space-xl) auto 0;
   max-width: 600px;
-  background-color: rgba(10, 10, 10, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: clamp(1.5rem, 5vw, var(--space-md));
-  border-radius: 4px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  padding: clamp(2rem, 6vw, var(--space-md));
+  border-radius: var(--radius-apple-md);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .form-header h3 {
   font-family: var(--font-accent);
-  font-size: 1.2rem;
-  letter-spacing: 0.2em;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
   text-align: center;
   color: var(--color-text-primary);
   margin-bottom: var(--space-md);
+  opacity: 0.95;
 }
 
 .dedication-form {
@@ -24,94 +26,146 @@
   gap: var(--space-md);
 }
 
-.form-group {
+.material-group {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
-.form-group label {
+.material-group label {
+  position: absolute;
+  left: 1.25rem;
+  top: 1.15rem;
   font-family: var(--font-accent);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.dedication-form input {
+  height: 58px;
+  padding: 1.5rem 1.25rem 0.5rem 1.25rem;
+}
+
+.dedication-form textarea {
+  padding: 1.7rem 1.25rem 0.6rem 1.25rem;
 }
 
 .dedication-form input,
 .dedication-form textarea {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--color-bg);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--color-text-primary);
   font-family: var(--font-body);
-  padding: 1rem;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  border-radius: 2px;
-  resize: vertical;
+  font-size: 0.95rem;
+  border-radius: var(--radius-apple-md);
+  transition: all 0.4s var(--transition-smooth);
+  resize: none;
 }
 
+/* Hover State */
+.dedication-form input:hover:not(:disabled),
+.dedication-form textarea:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Focus State */
 .dedication-form input:focus,
 .dedication-form textarea:focus {
   outline: none;
-  border-color: var(--color-text-primary);
   background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-text-primary);
+  box-shadow: var(--focus-glow);
 }
 
 .dedication-form input:disabled,
 .dedication-form textarea:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
+/* Floating Label Animation */
+.dedication-form input:focus ~ label,
+.dedication-form input:not(:placeholder-shown) ~ label,
+.dedication-form textarea:focus ~ label,
+.dedication-form textarea:not(:placeholder-shown) ~ label {
+  top: 0.5rem;
+  font-size: 0.62rem;
+  color: var(--color-text-primary);
+  opacity: 0.75;
+  letter-spacing: 0.15em;
+}
+
 .char-count {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--color-text-secondary);
   text-align: right;
-  margin-top: -0.25rem;
+  margin-top: 0.4rem;
+  margin-right: 0.25rem;
+  letter-spacing: 0.05em;
 }
 
 .submit-btn {
   background-color: var(--color-text-primary);
   color: var(--color-bg);
   font-family: var(--font-accent);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  padding: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  padding: 0.8rem 2.5rem;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-  margin-top: var(--space-sm);
+  border-radius: var(--radius-apple-md);
   border: 1px solid var(--color-text-primary);
+  transition: all 0.4s var(--transition-smooth);
+  margin-top: var(--space-sm);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  align-self: center;
+  min-width: 280px;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background-color: var(--color-bg);
+  background-color: transparent;
   color: var(--color-text-primary);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
 }
 
 .submit-btn:disabled {
-  opacity: 0.5;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.35);
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .status-message {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-top: var(--space-sm);
   margin-bottom: 0;
-  animation: fade-in 0.3s ease forwards;
+  animation: form-fade-in 0.3s var(--transition-smooth) forwards;
+  letter-spacing: 0.05em;
 }
 
 .status-message.success {
-  color: #4CAF50;
+  color: #81C784;
 }
 
 .status-message.error {
-  color: #F44336;
+  color: #E57373;
 }
 
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(-10px); }
+@keyframes form-fade-in {
+  from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
 }

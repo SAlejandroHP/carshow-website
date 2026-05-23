@@ -15,46 +15,46 @@ export const fallbackDedications = [
 export const galleryData = {
   "tsuru-3.jpg": {
     title: "El Primer Rugido",
-    description: "El día que el motor volvió a encender después de meses de silencio. El humo llenó el taller, pero en nuestros rostros solo había lágrimas de emoción. Habías logrado lo que todos decían que era imposible."
+    description: "Reconstruido desde las entrañas, nacido de un pedazo de chatarra con tus manos llenas de grasa y sueños. Pepe demostró que, sin importar cuán rota parezca una estructura, la paciencia y el amor siempre pueden devolverle la vida. ¡Oh sí, que ruge con fuerza!"
   },
   "tsuru-4.jpg": {
     title: "Horas de Desvelo",
-    description: "Una de tantas noches donde el tiempo no importaba. Entre herramientas tiradas, café frío y pláticas sobre la vida, fuiste construyendo no solo un coche, sino una hermandad que el tiempo jamás podrá borrar."
+    description: "Noches de desvelo con tu humor tan suave, tu simpatía y carisma. Pepe enseñaba con empatía y respeto. Cada herramienta compartida y cada café frío eran lecciones silenciosas que hoy sus hijos Guadalupe, Andrea y Christian guardan en el alma."
   },
   "tsuru-5.jpg": {
     title: "El Brillo en tus Ojos",
-    description: "Detalle de la pintura recién pulida. Cada reflejo en la carrocería muestra las horas de lijado, la paciencia infinita y el perfeccionismo que te caracterizaba. Querías que el mundo viera tu Tsuru tal como lo soñabas."
+    description: "El brillo de una carrocería pulida a mano. Así brillaba tu carisma en cada reunión de autos. Tenías la magia de transformar lo abandonado en arte, recordándonos que el valor real está en los detalles y el corazón que pones."
   },
   "tsuru-6.jpg": {
     title: "El Timón de tu Vida",
-    description: "El volante gastado por tus manos. Este fue tu santuario, el lugar donde eras libre y donde los problemas del mundo se desvanecían con solo meter primera velocidad. Aquí fuiste inmensamente feliz."
+    description: "El volante gastado por tus manos. Aquí Pepe era libre y compartía su respeto con quien fuera su copiloto. '¡Oh sí!', solías exclamar al meter primera velocidad, motivándonos a guiar nuestro propio camino con optimismo."
   },
   "tsuru-7.jpg": {
     title: "El Alma de la Máquina",
-    description: "Bajo el cofre se esconde el corazón del Tsuru. Cada manguera, cada cable y cada ajuste fue colocado por ti con una precisión casi quirúrgica. No era solo potencia; era tu propio latido en metal."
+    description: "Bajo el cofre se esconde tu dedicación. Tu corazón latía en cada cilindro de este Tsuru. Para tus hijos fuiste el motor que les dio impulso, y para tu esposa Anel, el compañero inigualable de una ruta que no conoce el final."
   },
   "tsuru-8.jpg": {
     title: "Postales del Camino",
-    description: "El Tsuru descansando a la orilla de la carretera durante nuestro último viaje largo. Aquel día el cielo estaba despejado y reímos hasta que nos dolió el estómago. Esa tarde quedó suspendida en el tiempo."
+    description: "El Tsuru descansando en el asfalto. Pepe amaba la carretera tanto como ver sonreír a su familia. Cada viaje era un recordatorio de que su mayor orgullo no era el auto terminado, sino el destino que construía junto a los suyos."
   },
   "tsuru-9.jpg": {
     title: "La Altura Perfecta",
-    description: "La suspensión rebajada, el detalle que tanto tiempo te tomó calibrar. 'Al ras del suelo, pero tocando las estrellas', solías decir sonriendo mientras veías cómo lucía desde la acera."
+    description: "La suspensión rebajada, calibrada al milímetro. 'Al ras del suelo, pero tocando las estrellas', decías sonriendo. Un reflejo de tu personalidad humilde pero con grandes metas, que nos enseña a mantener los pies en la tierra."
   },
   "tsuru-10.jpg": {
     title: "Luces de Esperanza",
-    description: "Los faros encendidos abriendo camino en la penumbra. Para nosotros, ver esas luces acercarse siempre fue sinónimo de que la ayuda había llegado, de que un amigo estaba cerca."
+    description: "Los faros encendidos abriendo camino. Un símbolo de la ayuda incondicional de Pepe, quien con gran simpatía y respeto nunca dejaba a nadie atrás. Su luz sigue alumbrando a quienes más lo extrañan en las curvas oscuras."
   },
   "tsuru-11.jpg": {
     title: "El Calzado del Guerrero",
-    description: "Los rines que tanto buscaste en catálogos y desguaces. Cada detalle estético era una firma de tu personalidad: humilde, fuerte y siempre buscando destacar con elegancia propia."
+    description: "Rines elegidos con paciencia quirúrgica. Pepe demostró que la belleza de la vida radica en la dedicación y la humildad. No hacía falta hacer ruido para llamar la atención de una buena manera."
   },
   "tsuru-12.jpg": {
     title: "Silueta Eterna",
-    description: "La silueta inconfundible del Tsuru al atardecer. Un diseño clásico que en tus manos se convirtió en leyenda. Aún parece que te veremos bajar de él con tu gorra y tu sonrisa."
+    description: "La silueta inconfundible del Tsuru al atardecer. Aunque tu partida causó dolor y dejó huecos en tantos corazones, tu amor eterno viaja con Guadalupe, Andrea, Christian y tu amada Anel, protegiéndolos desde el copiloto de la eternidad."
   },
   "tsuru-13.jpg": {
     title: "Hasta que el Asfalto Decida",
-    description: "El escape cromado que anunciaba tu paso por las calles. Ese sonido bronco y familiar que nos hacía asomarnos a la ventana. El motor calló físicamente, pero su eco vive en nuestros pechos."
+    description: "El escape cromado que anunciaba tu paso por las calles. Armar este coche desde las entrañas fue tu gran obra en metal, pero tu obra maestra eterna es el amor inquebrantable sembrado en tu familia. Tu motor sigue vivo."
   }
 };

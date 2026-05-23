@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ImmersiveReveal from './components/ImmersiveReveal';
 import VirtualJourney from './components/VirtualJourney';
 import Gallery from './components/Gallery';
 import DedicationWall from './components/DedicationWall';
+import FamilyMessage from './components/FamilyMessage';
 import CarDetails from './components/CarDetails';
 import AmbientSound from './components/AmbientSound';
 import CustomCursor from './components/CustomCursor';
 import InitialLoader from './components/InitialLoader';
+import Footer from './components/Footer';
+import Acknowledgements from './components/Acknowledgements';
+
 
 function App() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -37,7 +41,10 @@ function App() {
         <ImmersiveReveal />
         <VirtualJourney />
         <Gallery onPhotoSelect={handlePhotoSelect} />
+        <FamilyMessage />
         <DedicationWall />
+        <Acknowledgements />
+        <Footer />
       </div>
 
       {selectedPhoto && (

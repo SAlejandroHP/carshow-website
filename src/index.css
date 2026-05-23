@@ -53,6 +53,31 @@
     --space-lg: 4rem;
     --space-xl: 8rem;
     --space-xxl: 16rem;
+
+    /* Material 3 + Apple Design System Tokens */
+    --radius-apple-sm: 8px;
+    --radius-apple-md: 12px;
+    --radius-apple-lg: 20px;
+    
+    --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    --glass-bg: rgba(10, 10, 10, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 16px;
+    
+    --focus-glow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--radius-apple-md);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
 }
 
@@ -92,10 +117,26 @@
   }
 
   ::view-transition-old(root) {
-    animation: fade-out 0.4s cubic-bezier(0.83, 0, 0.17, 1) forwards;
+    animation: fade-out 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   ::view-transition-new(root) {
-    animation: fade-in 0.4s cubic-bezier(0.83, 0, 0.17, 1) forwards;
+    animation: fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  ::view-transition-group(selected-photo) {
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Faster exit transition (350ms) */
+  html.back-transition::view-transition-old(root) {
+    animation-duration: 0.35s;
+  }
+  html.back-transition::view-transition-new(root) {
+    animation-duration: 0.35s;
+  }
+  html.back-transition::view-transition-group(selected-photo) {
+    animation-duration: 0.35s;
   }
 
   @keyframes fade-in {

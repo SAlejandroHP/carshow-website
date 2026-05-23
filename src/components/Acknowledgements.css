@@ -1,0 +1,172 @@
+.acknowledgements-wrapper {
+  padding-block: var(--space-lg);
+  position: relative;
+  background-color: var(--color-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+/* Background subtle glow effect */
+.acknowledgements-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.015) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ack-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+  position: relative;
+  z-index: 2;
+}
+
+.ack-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.ack-pretitle {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.ack-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  margin-bottom: 0;
+  font-family: var(--font-heading);
+}
+
+.ack-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+/* Centered layout for 5 cards on tablet/desktop */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ack-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .ack-card:nth-child(1) { grid-column: span 2; }
+  .ack-card:nth-child(2) { grid-column: span 2; }
+  .ack-card:nth-child(3) { grid-column: span 2; }
+  .ack-card:nth-child(4) { grid-column: 1 / span 2; }
+  .ack-card:nth-child(5) { grid-column: 3 / span 2; }
+}
+
+@media (min-width: 1024px) {
+  .ack-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .ack-card:nth-child(1) { grid-column: span 2; }
+  .ack-card:nth-child(2) { grid-column: span 2; }
+  .ack-card:nth-child(3) { grid-column: span 2; }
+  .ack-card:nth-child(4) { grid-column: 2 / span 2; }
+  .ack-card:nth-child(5) { grid-column: 4 / span 2; }
+}
+
+.ack-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--radius-apple-lg);
+  padding: var(--space-md);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: all 0.4s var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ack-card:hover {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.03), 0 0 20px rgba(255, 255, 255, 0.01);
+}
+
+.ack-card-decor {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  font-size: 5rem;
+  color: rgba(255, 255, 255, 0.012);
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  font-family: var(--font-heading);
+  user-select: none;
+  transition: color 0.4s ease;
+}
+
+.ack-card:hover .ack-card-decor {
+  color: rgba(255, 255, 255, 0.025);
+}
+
+.ack-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.ack-card:hover .ack-card-icon {
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
+}
+
+.ack-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.ack-card-sub {
+  font-size: 0.7rem;
+  font-family: var(--font-accent);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.ack-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+  flex-grow: 1;
+  transition: color 0.3s ease;
+}
+
+.ack-card:hover .ack-card-desc {
+  color: #dddddd;
+}

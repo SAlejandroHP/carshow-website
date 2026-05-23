@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import './CarDetails.css';
 
 export default function CarDetails({ car, onBack }) {
@@ -10,29 +10,72 @@ export default function CarDetails({ car, onBack }) {
     }
   }, []);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     if (!document.startViewTransition) {
       onBack();
       return;
     }
     
     // We want the image in the list view to receive the view-transition-name 
-    // so it morphs back properly. We don't have to do it manually if we 
-    // kept the ID on the image in the list view, but since the list view 
-    // might be unmounted, we handle it in App.jsx or rely on React re-rendering 
-    // it before the transition completes.
+    // so it morphs back properly.
+    const imgEl = document.getElementById(`gallery-img-${car.id}`);
+    if (imgEl) imgEl.style.viewTransitionName = 'selected-photo';
+    
+    // Add back-transition class to HTML root for faster exit transition styles
+    document.documentElement.classList.add('back-transition');
     
     const transition = document.startViewTransition(() => {
       onBack();
     });
     
     transition.finished.finally(() => {
-      // Cleanup happens in CarGallery via useEffect or just not needed 
-      // since we only apply it during the click. But to be safe, we remove any lingering.
-      const el = document.getElementById(`thumb-${car.id}`);
-      if (el) el.style.viewTransitionName = '';
+      if (imgEl) imgEl.style.viewTransitionName = '';
+      document.documentElement.classList.remove('back-transition');
     });
-  };
+  }, [car.id, onBack]);
+
+  // Close details view on swipe from left/right edges
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const swipeThreshold = 50; // minimum horizontal distance
+    const edgeThreshold = 100; // start near screen edges (in pixels)
+    const maxDiffY = 50;       // maximum vertical distance to prevent vertical scroll triggers
+
+    const handleTouchStart = (e) => {
+      if (e.touches.length !== 1) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e) => {
+      if (e.changedTouches.length !== 1) return;
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+
+      const diffX = touchEndX - touchStartX;
+      const diffY = Math.abs(touchEndY - touchStartY);
+
+      if (diffY < maxDiffY) {
+        // Swipe left from right edge (moves finger right to left)
+        const isSwipeLeft = diffX < -swipeThreshold && touchStartX > window.innerWidth - edgeThreshold;
+        // Swipe right from left edge (moves finger left to right)
+        const isSwipeRight = diffX > swipeThreshold && touchStartX < edgeThreshold;
+
+        if (isSwipeLeft || isSwipeRight) {
+          handleBack();
+        }
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [car, onBack, handleBack]);
 
   return (
     <div className="details-container">
