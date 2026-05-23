@@ -33,7 +33,7 @@ export default function FamilyMessage() {
       <div className="family-container">
         <div className="family-header">
           <span className="family-pretitle">SU LEGADO MÁS VALIOSO</span>
-          <h2 className="family-title">Siempre en el Asfalto de sus Vidas</h2>
+          <h2 className="family-title">Siempre en el Camino de sus Vidas</h2>
         </div>
 
         <div className="family-grid">
