@@ -1,5 +1,6 @@
 import './ImmersiveReveal.css';
 import bgImage from '../assets/img-tsuru/tsuru-1.jpg';
+import appIcon from '../assets/Icono.png';
 
 export default function ImmersiveReveal() {
   return (
@@ -10,6 +11,7 @@ export default function ImmersiveReveal() {
       </div>
       
       <div className="immersive-text-overlay">
+        <img src={appIcon} alt="Logo Rulas" className="immersive-logo" />
         <h2 className="immersive-pretitle">EN MEMORIA DE JOSÉ PADRÓN GARCÍA "RULAS" <br /> <span style={{ whiteSpace: 'nowrap' }}>(1980 — 2016)</span></h2>
         <h1 className="immersive-title">Rulas</h1>
         <p className="immersive-invitation">Invitación a la ceremonia y al recorrido</p>

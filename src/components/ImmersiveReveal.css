@@ -44,6 +44,21 @@
   text-align: center;
 }
 
+.immersive-logo {
+  width: clamp(60px, 10vw, 90px);
+  height: auto;
+  border-radius: var(--radius-apple-sm);
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.6));
+  transition: transform 0.5s var(--transition-bounce), filter 0.5s var(--transition-bounce);
+  pointer-events: auto; /* Allow hover since parent text-overlay has pointer-events: none */
+}
+
+.immersive-logo:hover {
+  transform: scale(1.1) rotate(2deg);
+  filter: drop-shadow(0 6px 25px rgba(255, 255, 255, 0.2));
+}
+
 .immersive-pretitle {
   font-family: var(--font-accent);
   font-size: clamp(0.8rem, 2.5vw, 1.2rem);
